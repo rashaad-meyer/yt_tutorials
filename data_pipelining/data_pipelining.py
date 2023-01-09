@@ -1,6 +1,7 @@
 import tensorflow as tf
 import pandas as pd
-
+from tensorflow import keras
+from tensorflow.keras import layers
 
 base_path = '../../data/mnist_2_digits/'
 
@@ -36,7 +37,35 @@ train_ds = train_ds.shuffle(buffer_size=len(train_ds))
 
 train_ds = train_ds.batch(64)
 
-print('Training dataset')
-for image, labels in train_ds.take(1):
-    print('Image shape: ', image.numpy().shape)
-    print('Labels', labels)
+inputs = keras.Input(shape=(64, 64, 1))
+
+x = layers.Conv2D(filters=32, kernel_size=3, padding='same')(inputs)
+x = layers.BatchNormalization()(x)
+x = keras.activations.relu(x)
+
+x = layers.Conv2D(filters=64, kernel_size=3, padding='same')(x)
+x = layers.BatchNormalization()(x)
+x = keras.activations.relu(x)
+
+x = layers.MaxPooling2D()(x)
+
+x = layers.Conv2D(64, 3, activation='relu')(x)
+x = layers.Conv2D(128, 3, activation='relu')(x)
+x = layers.MaxPooling2D()(x)
+
+x = layers.Flatten()(x)
+x = layers.Dense(128, activation='relu')(x)
+x = layers.Dropout(0.5)(x)
+
+x = layers.Dense(64, activation='relu')(x)
+
+output1 = layers.Dense(10, activation='softmax', name='first_num')(x)
+output2 = layers.Dense(10, activation='softmax', name='second_num')(x)
+
+model = keras.Model(inputs=inputs, outputs=[output1, output2])
+
+model.compile(optimizer=keras.optimizers.Adam(),
+              loss=keras.losses.SparseCategoricalCrossentropy(),
+              metrics=['accuracy'])
+
+model.fit(train_ds, epochs=5, verbose=2)
