@@ -3,7 +3,7 @@ import pandas as pd
 from tensorflow import keras
 from tensorflow.keras import layers
 
-base_path = '../../data/mnist_2_digits/'
+base_path = '../../../data/mnist_2_digits/'
 
 mode = 'train'
 
@@ -19,7 +19,7 @@ def process_path(path, label):
     img = tf.io.read_file(path)
     img = tf.io.decode_png(img, channels=1)
     img = tf.image.convert_image_dtype(img, tf.float32)
-    img = tf.image.resize(img, (64, 64))
+    img = tf.image.resize(img, (64, 64)) / 255.0
 
     labels = {'first_num': label[0], 'second_num': label[1]}
 
@@ -68,4 +68,6 @@ model.compile(optimizer=keras.optimizers.Adam(),
               loss=keras.losses.SparseCategoricalCrossentropy(),
               metrics=['accuracy'])
 
-model.fit(train_ds, epochs=5, verbose=2)
+model.fit(train_ds, epochs=3, verbose=2)
+
+model.save('../models/mnist_digits_model')
