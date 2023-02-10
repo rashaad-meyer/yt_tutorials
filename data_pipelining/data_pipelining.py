@@ -1,7 +1,7 @@
 import tensorflow as tf
 import pandas as pd
 from tensorflow import keras
-from tensorflow.keras import layers
+from keras import layers
 
 base_path = '../../../data/mnist_2_digits/'
 
@@ -68,6 +68,6 @@ model.compile(optimizer=keras.optimizers.Adam(),
               loss=keras.losses.SparseCategoricalCrossentropy(),
               metrics=['accuracy'])
 
-model.fit(train_ds, epochs=3, verbose=2)
+model.fit(train_ds, epochs=3, verbose=1)
 
 model.save('../models/mnist_digits_model')

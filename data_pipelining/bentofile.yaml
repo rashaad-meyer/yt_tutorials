@@ -1,0 +1,10 @@
+service: "service:svc"
+labels:
+  owner: Rashaad
+  stage: dev
+include:
+  - "service.py"
+python:
+  packages:
+    - tensorflow==2.10.1
+    - Pillow
