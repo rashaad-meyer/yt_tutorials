@@ -1,7 +1,7 @@
 service: "service:svc"
 labels:
   owner: Rashaad
-  stage: dev
+  stage: tutorial
 include:
   - "service.py"
 python:

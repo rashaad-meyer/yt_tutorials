@@ -4,7 +4,7 @@ from bentoml.io import JSON, Image
 
 import numpy as np
 
-model_ref = bentoml.keras.get('mnist_digits_model:eu2y63nincxgznd7')
+model_ref = bentoml.keras.get('mnist_digits_model:ww4ilpfjd2vodptb')
 
 model_runner = model_ref.to_runner()
 

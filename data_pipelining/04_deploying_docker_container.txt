@@ -1,0 +1,9 @@
+1. Create ec2 instance
+2. Install Docker using command: sudo apt install docker.io
+3. Make docker repo
+4. Tag Docker: image docker tag 2_digit_mnist_classifier:ybx25avjec6i7ptb viibrem/2_digit_mnist_classifier:v1
+5. Push Docker image: docker push viibrem/2_digit_mnist_classifier:v1
+6. Log into docker (optional)
+7. Pull docker image: docker pull viibrem/2_digit_mnist_classifier:v1
+8. Run docker container: docker run -p 3000:3000 --network="host" viibrem/2_digit_mnist_classifier:v1
+9. Add security group inbound rules: HTTP, TCP:3000, UDP:3000
