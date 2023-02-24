@@ -3,7 +3,7 @@ labels:
   owner: Rashaad
   stage: tutorial
 include:
-  - "service.py"
+  - "03_service.py"
 python:
   packages:
     - tensorflow==2.10.1
