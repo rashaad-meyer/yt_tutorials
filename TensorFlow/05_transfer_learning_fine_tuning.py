@@ -7,7 +7,7 @@ base_dir = '../../../data/natural_scenes/'
 train_dir = base_dir + 'seg_train'
 test_dir = base_dir + 'seg_test'
 
-MODEL_URL = 'https://tfhub.dev/google/imagenet/resnet_v2_50/classification/5'
+MODEL_URL = 'https://tfhub.dev/google/imagenet/resnet_v2_50/feature_vector/5'
 
 train_ds = tf.keras.utils.image_dataset_from_directory(train_dir,
                                                        validation_split=0.2,
@@ -41,3 +41,5 @@ model.compile(loss=keras.losses.SparseCategoricalCrossentropy(),
               metrics=['accuracy'])
 
 model.fit(train_ds, validation_data=val_ds, epochs=3)
+
+model.evaluate(test_ds)
