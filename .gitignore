@@ -4,4 +4,7 @@
 /.idea/inspectionProfiles/Project_Default.xml
 /.idea/Tutorials.iml
 /.idea/vcs.xml
+/.idea/yt_tutorials.iml
 /models/
+/PyTorch/mnist_ds/
+/PyTorch/.ipynb_checkpoints/
